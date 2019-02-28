@@ -1,5 +1,5 @@
 Dependencies for Project 'Project1', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5C778AD7)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32L432xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5C77A8DE)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32L432xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (horton_stm32l432.h)(0x5C778AD3)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
 F (.\horton_stm32l432.h)(0x5C778AD3)()
