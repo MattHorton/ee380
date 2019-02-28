@@ -13,26 +13,29 @@ unsigned char key_map[4][3] = {
 
 	
 unsigned char keypad_scan();
+void process_key(char c, int n, char* code);
 	
 	
 int main(){
 	unsigned char key;
 	char str[50];
 	unsigned char len = 0;
+	char code[6] = {1,2,3,4,5,6};
+	int code_index = 0;
+	
 	//GPIO and clock configurations
-	// columns are pulled high with no pull up pull down 3v3 and 2kohm
 	RCC_AHB2ENR |= (1 << 0); //enable GPIOA clock
 	GPIOA->MODER  = 0x00000033; //Set PA0, PA1, PA2, PA3 to output(rows)
 															//Set PA4, PA5, PA6      to input (columns)
-	GPIOA->OTYPER |= 0x000F;//Set outputs to open drain
-	GPIOA->ODR = 0x000F;
-	while(1)
-		GPIOA->ODR |= 0x000F;
+	GPIOA->OTYPER |= 0x000F;		//Set outputs to open drain
+															//everything else is no pull up pull down default
 	
-	/*...*/
-	/*
+	unsigned char last_scanned = '\n';
 	while(1) {
 		key = keypad_scan();
+		if(last_scanned != (unsigned char)keypad_scan)
+			//a new button was pressed
+			//process_key(key, 6, 
 		switch(key) {
 			case '*'://if * pressed
 				//do this for all keys ???
@@ -44,7 +47,6 @@ int main(){
 				if(len >= 48) len = 0;//avoid buffer overflow
 		}
 	}
-	*/
 }
 
 
@@ -52,28 +54,39 @@ int main(){
 unsigned char keypad_scan() {
 	unsigned char row, col, ColumnPressed;
 	unsigned char key = 0xFF;
+	uint32_t r[4] = {0x0007, 0x000B, 0x000D, 0x000E};
 	
 	//check whether any key has been pressed
 	//1. output zeros on all row pins
+	GPIOA->ODR = 0x000F;
 	//2. delay shortly, read inputs of column pins
+	uint32_t c[3] = {	GPIOA->IDR & 0x0001, 
+										GPIOA->IDR & 0x0002, 
+										GPIOA->IDR & 0x0004};
 	//3. if inputs are 1 for all columns then no key has been pressed
-	/*...*/
-//	if(/*no key pressed*/)
+	if (c[0] == c[1] == c[2] == 1)//if(no key pressed)
 		return 0xFF;
+	//else
 	//identify the column of the key pressed
 	for(col = 0; col < 3; col++) { //column scan
-//		if(/*...*/)
+		if(c[col] == 0)
 			ColumnPressed = col;
 	}
 	//identify the row of the column pressed
 	for(row = 0; row < 4; row++) {
-		//set up the row outputs
-		/*...*/
+		//set up the row outputs (done in main)
+		//instead of F we want to go 7(0111), B(1011), D(1101), E(1110)
+		GPIOA->ODR = r[row];
 		//read the column inputs after a short delay
-		/*...*/
+		uint32_t c[3] = {	GPIOA->IDR & 0x0001, 
+											GPIOA->IDR & 0x0002, 
+											GPIOA->IDR & 0x0004};
 		//check the column inputs
-//		if(/*...*/)//if the input from the column pin ColumnPressed is zero
+		if(c[ColumnPressed] == 0)//if the input from the column pin ColumnPressed is zero
 			key = key_map[row][ColumnPressed];
 	}
 	return key;
+}
+
+void process_key(char c, int n, char* code) {
 }

@@ -8,7 +8,7 @@
 #define LED_OFF (1 << (3+16))
 #define GPIOA_MODER (*((volatile unsigned long *) 0x48000000)) //GPIO A Mode Reg
 #define GPIOA_PUPDR (*((volatile unsigned long *) 0x4800000C)) //GPIO pullup/down
-#define GPIOA_AFRH 	(*((volatile unsigned long *) 0x48000024))	 //alternate function includeing PA8
+#define GPIOA_AFRH 	(*((volatile unsigned long *) 0x48000024))	 //alternate function including PA8
 #define MASTER_ADC1 (*((volatile unsigned long *) 0x50040000))
 #define ADC_CR      (*((volatile unsigned long *) 0x50040008))
 #define ADC_CCR     (*((volatile unsigned long *) 0x50040300))
