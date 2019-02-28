@@ -100,7 +100,10 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>11</nTsel>
+        <bEvRecOn>1</bEvRecOn>
+        <bSchkAxf>0</bSchkAxf>
+        <bTchkAxf>0</bTchkAxf>
+        <nTsel>6</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -137,7 +140,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U066EFF505057717867092543 -O16591 -SF4000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8000 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32L4xx_256.FLM -FS08000000 -FL040000 -FP0($$Device:STM32L432KCUx$CMSIS\Flash\STM32L4xx_256.FLM)</Name>
+          <Name>-U0666FF505057717867043027 -O207 -SF4000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8000 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32L4xx_256.FLM -FS08000000 -FL040000 -FP0($$Device:STM32L432KCUx$CMSIS\Flash\STM32L4xx_256.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -160,7 +163,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>0</aLwin>
+        <aLwin>1</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
@@ -186,14 +189,29 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <bLintAuto>0</bLintAuto>
+      <bAutoGenD>0</bAutoGenD>
+      <LntExFlags>0</LntExFlags>
+      <pMisraName></pMisraName>
+      <pszMrule></pszMrule>
+      <pSingCmds></pSingCmds>
+      <pMultCmds></pMultCmds>
+      <pMisraNamep></pMisraNamep>
+      <pszMrulep></pszMrulep>
+      <pSingCmdsp></pSingCmdsp>
+      <pMultCmdsp></pMultCmdsp>
       <SystemViewers>
         <Entry>
-          <Name>System Viewer\ADC1</Name>
+          <Name>System Viewer\GPIOA</Name>
           <WinId>35905</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\GPIOB</Name>
+          <WinId>35904</WinId>
         </Entry>
       </SystemViewers>
       <DebugDescription>
         <Enable>1</Enable>
+        <EnableFlashSeq>0</EnableFlashSeq>
         <EnableLog>0</EnableLog>
         <Protocol>2</Protocol>
         <DbgClock>10000000</DbgClock>
@@ -212,7 +230,6 @@
       <FileNumber>1</FileNumber>
       <FileType>1</FileType>
       <tvExp>1</tvExp>
-      <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
@@ -225,7 +242,6 @@
       <FileNumber>2</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
-      <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\horton_stm32l432.h</PathWithFileName>

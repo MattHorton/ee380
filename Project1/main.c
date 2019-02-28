@@ -5,48 +5,44 @@ unsigned char key_map[4][3] = {
 	{'4', '5', '6'},//2nd row
 	{'7', '8', '9'},//3rd row
 	{'*', '0', '#'},//4th row
-};//must set up masks for each one of these :^((((((
+};
 
 unsigned char code[6] = {1,2,3,4,5,6};
 int current_index = 0;
+uint32_t c[3];
 
 unsigned char keypad_scan(void);
 void process_key(unsigned char c);
 	
-#define GPIOA ((GPIO_Typedef *) 0x48000000)	
+#define GPIOA ((GPIO_Typedef *) 0x48000000)
+#define GPIOB ((GPIO_Typedef *) 0x48000400)
 
 
 int main(){
-	unsigned char key;
-	//char str[50];
-	//unsigned char len = 0;
-	
 	//GPIO and clock configurations
-	RCC_AHB2ENR |= (1 << 0); //enable GPIOA clock
-	GPIOA->MODER  = 0x00000033; //Set PA0, PA1, PA2, PA3 to output(rows)
-															//Set PA4, PA5, PA6      to input (columns)
-	GPIOA->OTYPER |= 0x000F;		//Set outputs to open drain
-															//everything else is no pull up pull down default
-	
+	RCC_AHB2ENR |= (1 << 0); 	//enable GPIOA clock
+	GPIOA->MODER &= ~0x3FFF; 	//clear only lower 14 bits
+														//	and sets PA4,PA5,PA6 mode to input (columns)
+	GPIOA->MODER |= 0x55; 		//Set PA0, PA1, PA2, PA3 mode to output(rows)
+	GPIOA->OTYPER |= 0x000F;	//Set outputs type to open drain
+														//everything else is no pull up pull down default
+	RCC_AHB2ENR |= (1 << 1); 	//enable GPIOB clock
+	GPIOB->MODER |= 0x5;
+	//GPIOB->OTYPER|= 0xF;
+	unsigned char key;
 	unsigned char last_scanned = '\n';
+	//while(1) {
+	//	GPIOB->ODR |= (1 << 0);
+	//	GPIOB->ODR |= (1 << 1);
+	//}
 	while(1) {
 		key = keypad_scan();
-		if((last_scanned != (unsigned char)keypad_scan) && ('f' != (unsigned char)keypad_scan)) {
-			//a new button was pressed and not the idle char 'f'
+		if((last_scanned != key) && ('f' != key)) {
+			//key must be different from last key
+			//key must not be idle character
 			process_key(key);
 			last_scanned = key;
 		}
-			
-		/*switch(key) {
-			case '*'://if * pressed
-				//do this for all keys ???
-				break;
-			default://add key pressed to string
-				str[len] = key;
-				str[len+1] = 0;//NULL string terminator
-				len++;
-				if(len >= 48) len = 0;//avoid buffer overflow
-		}*/
 	}
 }
 
@@ -55,6 +51,9 @@ unsigned char keypad_scan(void) {
 	unsigned char row, col, ColumnPressed;
 	unsigned char key = 0xFF;
 	uint32_t r[4] = {0x0007, 0x000B, 0x000D, 0x000E};
+	
+	//note rows are bits 0 -> 3
+	// columns are bits 4 -> 6
 	
 	//check whether any key has been pressed
 	//1. output zeros on all row pins
@@ -82,15 +81,18 @@ unsigned char keypad_scan(void) {
 											GPIOA->IDR & 0x0002, 
 											GPIOA->IDR & 0x0004};
 		//check the column inputs
-		if(c[ColumnPressed] == 0)//if the input from the column pin ColumnPressed is zero
+		if(c[ColumnPressed] == 0){//if the input from the column pin ColumnPressed is zero
 			key = key_map[row][ColumnPressed];
+			return key;
+		}
 	}
-	return key;
+	return 'f';
 }
 
 void process_key(unsigned char c) {
 	if(current_index == 6) { //6 correct digits have been entered successively
 		//flash led for open
+		GPIOB->ODR |= (1<<0);
 		return;
 	}
 	if(c != code[current_index]) {
