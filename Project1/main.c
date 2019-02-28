@@ -46,7 +46,6 @@ int main(){
 	}
 }
 
-
 unsigned char keypad_scan(void) {
 	unsigned char row, col, ColumnPressed;
 	unsigned char key = 0xFF;
