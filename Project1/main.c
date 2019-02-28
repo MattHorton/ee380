@@ -1,27 +1,25 @@
 #include "horton_stm32l432.h"
 
-
 unsigned char key_map[4][3] = {
 	{'1', '2', '3'},//1st row
 	{'4', '5', '6'},//2nd row
 	{'7', '8', '9'},//3rd row
 	{'*', '0', '#'},//4th row
-	};//must set up masks for each one of these :^((((((
+};//must set up masks for each one of these :^((((((
 
-	
-#define GPIOA ((GPIO_Typedef *) 0x48000000)
+unsigned char code[6] = {1,2,3,4,5,6};
+int current_index = 0;
 
+unsigned char keypad_scan(void);
+void process_key(unsigned char c);
 	
-unsigned char keypad_scan();
-void process_key(char c, int n, char* code);
-	
-	
+#define GPIOA ((GPIO_Typedef *) 0x48000000)	
+
+
 int main(){
 	unsigned char key;
-	char str[50];
-	unsigned char len = 0;
-	char code[6] = {1,2,3,4,5,6};
-	int code_index = 0;
+	//char str[50];
+	//unsigned char len = 0;
 	
 	//GPIO and clock configurations
 	RCC_AHB2ENR |= (1 << 0); //enable GPIOA clock
@@ -33,10 +31,13 @@ int main(){
 	unsigned char last_scanned = '\n';
 	while(1) {
 		key = keypad_scan();
-		if(last_scanned != (unsigned char)keypad_scan)
-			//a new button was pressed
-			//process_key(key, 6, 
-		switch(key) {
+		if((last_scanned != (unsigned char)keypad_scan) && ('f' != (unsigned char)keypad_scan)) {
+			//a new button was pressed and not the idle char 'f'
+			process_key(key);
+			last_scanned = key;
+		}
+			
+		/*switch(key) {
 			case '*'://if * pressed
 				//do this for all keys ???
 				break;
@@ -45,13 +46,12 @@ int main(){
 				str[len+1] = 0;//NULL string terminator
 				len++;
 				if(len >= 48) len = 0;//avoid buffer overflow
-		}
+		}*/
 	}
 }
 
 
-
-unsigned char keypad_scan() {
+unsigned char keypad_scan(void) {
 	unsigned char row, col, ColumnPressed;
 	unsigned char key = 0xFF;
 	uint32_t r[4] = {0x0007, 0x000B, 0x000D, 0x000E};
@@ -65,7 +65,7 @@ unsigned char keypad_scan() {
 										GPIOA->IDR & 0x0004};
 	//3. if inputs are 1 for all columns then no key has been pressed
 	if (c[0] == c[1] == c[2] == 1)//if(no key pressed)
-		return 0xFF;
+		return 'f'; //F for failed
 	//else
 	//identify the column of the key pressed
 	for(col = 0; col < 3; col++) { //column scan
@@ -88,5 +88,16 @@ unsigned char keypad_scan() {
 	return key;
 }
 
-void process_key(char c, int n, char* code) {
+void process_key(unsigned char c) {
+	if(current_index == 6) { //6 correct digits have been entered successively
+		//flash led for open
+		return;
+	}
+	if(c != code[current_index]) {
+		//flash bad led
+		current_index = 0;//reset index
+	}
+	if(c == code[current_index]) {
+		current_index++;
+	}
 }
