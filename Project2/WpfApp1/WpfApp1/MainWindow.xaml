@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Menu Height="23" HorizontalAlignment="Left" Margin="56,29,0,0" Name="menu1" VerticalAlignment="Top" Width="200">
+            <MenuItem Header="Filter Type" Name="mnuFilter">
+                <MenuItem x:Name="mnuLowpass" Header="Lowpass" Click="MnuLowpass_Click"/>
+                <MenuItem x:Name="mnuHighpass" Header="Highpass" Click="MnuHighpass_Click"/>
+                <MenuItem x:Name="mnuBandpass" Header="Bandpass" Click="MnuBandpass_Click"/>
+                <MenuItem x:Name="mnuBandstop" Header="Bandstop" Click="MnuBandstop_Click"/>
+            </MenuItem>
+        </Menu>
+        <Menu Height="23" HorizontalAlignment="Left" Margin="284,29,0,0" x:Name="menu1_Copy" VerticalAlignment="Top" Width="200">
+            <MenuItem Header="Implementation Type" x:Name="mnuRCRLRLC">
+                <MenuItem x:Name="mnuRC" Header="RC" Click="MnuRC_Click"/>
+                <MenuItem x:Name="mnuRL" Header="RL" Click="MnuRL_Click"/>
+                <MenuItem x:Name="mnuRLC" Header="RLC" Click="MnuRLC_Click"/>
+            </MenuItem>
+        </Menu>
+
+
+        <Label Content="R" HorizontalAlignment="Left" Margin="56,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,76,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxR"/>
+        <Label Content="L" HorizontalAlignment="Left" Margin="56,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,121,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxL"/>
+        <Label Content="C" HorizontalAlignment="Left" Margin="56,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,165,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxC"/>
+        <Label Content="Fc" HorizontalAlignment="Left" Margin="56,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,210,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxFc"/>
+        <Label Content="Fstop" HorizontalAlignment="Left" Margin="56,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,261,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxFstop"/>
+        <Label Content="Fpass" HorizontalAlignment="Left" Margin="56,303,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.161,0.105"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,307,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxFpass"/>
+        <Button Content="Calculate" HorizontalAlignment="Left" Margin="56,349,0,0" VerticalAlignment="Top" Width="75" Name ="btnCalculate" Click="BtnCalculate_Click"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Margin="144,349,0,0" VerticalAlignment="Top" Width="75" Name="btnReset" Click="BtnReset_Click"/>
+    </Grid>
+</Window>
