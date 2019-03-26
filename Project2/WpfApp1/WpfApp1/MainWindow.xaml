@@ -39,5 +39,11 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="99,307,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Width="120" Name="txtBoxFpass"/>
         <Button Content="Calculate" HorizontalAlignment="Left" Margin="56,349,0,0" VerticalAlignment="Top" Width="75" Name ="btnCalculate" Click="BtnCalculate_Click"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="144,349,0,0" VerticalAlignment="Top" Width="75" Name="btnReset" Click="BtnReset_Click"/>
+        
+        <Image HorizontalAlignment="Left" Height="136" Margin="313,76,0,0" VerticalAlignment="Top" Width="149" Source="lowpassRC.png" Name="lowpassRCimg" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Left" Height="157" Margin="493,76,0,0" VerticalAlignment="Top" Width="179" Source="highpassRL.png" Name ="highpassRLimg" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Left" Height="131" Margin="313,248,0,0" VerticalAlignment="Top" Width="171" Source="bandstopRLC.png" Name ="bandstopRLCimg" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Left" Height="131" Margin="510,248,0,0" VerticalAlignment="Top" Width="162" Source="bandpassRLC.png" Name ="bandpassRLCimg" Visibility="Hidden"/>
+
     </Grid>
 </Window>

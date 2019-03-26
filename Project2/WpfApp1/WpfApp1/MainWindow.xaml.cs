@@ -75,13 +75,13 @@ namespace WpfApp1
 
         private void BtnCalculate_Click(object sender, RoutedEventArgs e)
         {
-            Double r, l, c, fc, fstop, fpass;
+            Double r, l, c, fc;
             r = 0;
             l = 0;
             c = 0;
             fc = 0;
-            fstop = 0;
-            fpass = 0;
+            String fstop = "";
+            String fpass = "";
             if(!txtBoxR.Text.Equals("Value"))
             {
                 r = Double.Parse(txtBoxR.Text);
@@ -102,7 +102,7 @@ namespace WpfApp1
                 fc = Double.Parse(txtBoxFc.Text);
                 numArgs++;
             }
-            if (!txtBoxFstop.Text.Equals("Value"))
+            /*if (!txtBoxFstop.Text.Equals("Value"))
             {
                 fstop = Double.Parse(txtBoxFstop.Text);
                 numArgs++;
@@ -111,59 +111,52 @@ namespace WpfApp1
             {
                 fpass = Double.Parse(txtBoxFpass.Text);
                 numArgs++;
-            }
+            }*/
             switch(selectedFilterType)
             {
                 case "Lowpass":
                     // do lowpass shit
-                    switch (selectedFilterImplementation)
+                    if(selectedFilterImplementation == "RC")
                     {
-                        case "RC":
-                            //must have either (r and c) or (r and fc) or (c and fc)
-                            fc = 1 / (2 * 3.14 * r * c);
-                            break;
-                        case "RL":
-                            //rl must have either (r and l) or (r and fc) or (l and fc)
-
-                            break;
-                        default:
-                            break;
+                        fc = 1 / (2 * 3.14 * r * c);
+                        lowpassRCimg.Visibility = System.Windows.Visibility.Visible;
                     }
                     break;
                 case "Highpass":
                     // do highpass shit
-                    switch (selectedFilterImplementation)
+                    if (selectedFilterImplementation == "RL")
                     {
-                        case "RC":
-                            //must have either (r and c) or (r and fc) or (c and fc)
-                            break;
-                        case "RL":
-                            //rl must have either (r and l) or (r and fc) or (l and fc)
-                            break;
-                        default:
-                            break;
+                        fc = r / (2 * 3.14 *l);
+                        highpassRLimg.Visibility = System.Windows.Visibility.Visible;
                     }
                     break;
                 case "Bandpass":
                     // do bandpass shit
-                    switch (selectedFilterImplementation)
+                    if (selectedFilterImplementation == "RLC")
                     {
-                        case "RLC":
-                            //big branch of requirements
-                            break;
-                        default:
-                            break;
+                        //fc = r / (2 * 3.14 * l);
+                        Double w0 = 1 / (Math.Sqrt(l * c)); //natural freq
+                        Double Q = (1 / r) * (Math.Sqrt(l / c)); // q factor
+                        Double dw = w0 / Q; //bandwidth (rads)
+                        Double f2 = (w0 + (dw / 2)) / (2 * 3.14); //upper freq
+                        Double f1 = (w0 - (dw / 2)) / (2 * 3.14); //lower freq
+                        fpass = f1.ToString() + f2.ToString();
+                        fc = w0 / (2 * 3.14);
+                        bandpassRLCimg.Visibility = System.Windows.Visibility.Visible;
                     }
                     break;
                 case "Bandstop":
                     // do bandstop shit
-                    switch (selectedFilterImplementation)
+                    if (selectedFilterImplementation == "RLC")
                     {
-                        case "RLC":
-                            //big branch of requirements
-                            break;
-                        default:
-                            break;
+                        Double w0 = 1 / (Math.Sqrt(l * c)); //natural freq
+                        Double Q = (1 / r) * (Math.Sqrt(l / c)); // q factor
+                        Double dw = w0 / Q; //bandwidth (rads)
+                        Double f2 = (w0 + (dw / 2)) / (2 * 3.14); //upper freq
+                        Double f1 = (w0 - (dw / 2)) / (2 * 3.14); //lower freq
+                        fstop = f1.ToString() + f2.ToString();
+                        fc = w0 / (2 * 3.14);
+                        bandstopRLCimg.Visibility = System.Windows.Visibility.Visible;
                     }
                     break;
                 default:
@@ -173,8 +166,8 @@ namespace WpfApp1
             txtBoxL.Text = l.ToString();
             txtBoxC.Text = c.ToString();
             txtBoxFc.Text = fc.ToString();
-            txtBoxFpass.Text = fpass.ToString();
-            txtBoxFstop.Text = fstop.ToString();
+            txtBoxFpass.Text = fpass;//.ToString();
+            txtBoxFstop.Text = fstop;//.ToString();
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
@@ -188,6 +181,11 @@ namespace WpfApp1
             txtBoxFstop.Text = "Value";
             mnuFilter.Header = "Filter Type";
             mnuRCRLRLC.Header = "Implementation Type";
+
+            highpassRLimg.Visibility = System.Windows.Visibility.Hidden;
+            lowpassRCimg.Visibility = System.Windows.Visibility.Hidden;
+            bandpassRLCimg.Visibility = System.Windows.Visibility.Hidden;
+            bandstopRLCimg.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }
