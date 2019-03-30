@@ -1,0 +1,6 @@
+[submodule "Project3/Humidity_Sensor_Breakout-HIH-4030"]
+	path = Project3/Humidity_Sensor_Breakout-HIH-4030
+	url = https://github.com/sparkfun/Humidity_Sensor_Breakout-HIH-4030.git
+[submodule "Project3/MPL3115A2_Breakout"]
+	path = Project3/MPL3115A2_Breakout
+	url = https://github.com/sparkfun/MPL3115A2_Breakout.git
