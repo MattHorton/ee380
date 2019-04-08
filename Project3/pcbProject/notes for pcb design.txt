@@ -36,3 +36,21 @@ parts that need schematic symbols
     (1) 6 pin header
   buck converter
     (4) 2 pin headers
+
+
+
+
+
+
+
+TODO:
+
+add voltage regulator
+L7805CV
+GK152 V6
+CHN 315
+
+add pull up resistors
+some pins for a switch to interrupt/control voltage regulator
+
+clarify board size
