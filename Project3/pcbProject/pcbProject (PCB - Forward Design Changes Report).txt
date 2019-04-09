@@ -3,26 +3,39 @@ Forward Design Changes Report
 
 Report File:        C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject (PCB - Forward Design Changes Report).txt
 Report Written:     Tuesday, April 09, 2019
+Project Path:       C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject.prj
 Design Path:        C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject.pcb
 Design Title:       
 Created:            4/9/2019 1:58:45 AM
-Last Saved:         4/9/2019 2:16:55 AM
-Editing Time:       17 min
+Last Saved:         4/9/2019 12:07:40 PM
+Editing Time:       33 min
 Units:              thou (precision 0)
 
-Disconnected pin "U1.4" from net "N0018".
-Disconnected pin "U4.1" from net "N0007".
-Disconnected pin "U5.4" from net "N0018".
+Disconnected pin "U1.29" from net "N0007".
+Disconnected pin "U2.6" from net "N0007".
+Disconnected pin "U3.1" from net "N0007".
+Disconnected pin "U4.5" from net "N0007".
+Disconnected pin "U5.4" from net "N0007".
+Disconnected pin "U6.2" from net "N0007".
 
-Deleted net "N0018".
+Deleted net "N0007".
 
-Added component reference "U6" of component "VoltageRegulator", package "USER".
+Added net "N0027".
+Added net "N0028".
+Added net "N0032".
 
-Connected pin "U5.4" to net "N0007".
-Connected pin "U6.2" to net "N0007".
-Connected pin "U6.3" to net "N0017".
+Added component reference "U7" of component "BS170", package "TO-92".
 
-Net N0001 renamed to N0010
+Connected pin "U1.9" to net "N0032".
+Connected pin "U1.29" to net "N0027".
+Connected pin "U2.6" to net "N0028".
+Connected pin "U3.1" to net "N0028".
+Connected pin "U4.5" to net "N0028".
+Connected pin "U5.4" to net "N0027".
+Connected pin "U6.2" to net "N0027".
+Connected pin "U7.1" to net "N0027".
+Connected pin "U7.2" to net "N0032".
+Connected pin "U7.3" to net "N0028".
 
 
 End Of Report.
