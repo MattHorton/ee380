@@ -6,19 +6,13 @@ Report Written:     Tuesday, April 09, 2019
 Design Path:        C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject.pcb
 Design Title:       
 Created:            4/9/2019 1:58:45 AM
-Last Saved:         4/9/2019 2:02:06 AM
-Editing Time:       3 min
+Last Saved:         4/9/2019 2:16:55 AM
+Editing Time:       17 min
 Units:              thou (precision 0)
 
 
-Checking integrity of Schematic "C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\schematic.sch" with PCB "C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject.pcb"
-===========================================================================================================================================================================================
-
-The PCB and Schematic designs do not match.
-To bring them into line, you will need to make the following changes to the PCB design:
-
-Connect Pin R2-1 to Net "N0005"
-Connect Pin R3-1 to Net "N0003"
+Checking integrity of Schematic and Pcb designs in project "pcbProject"
+=======================================================================
 
 
 End Of Report.

@@ -4,3 +4,4 @@ HumiditySensor||#USER=3=HumiditySensor||@Manufacturer=||@Manufacturer Part Numbe
 NucleoBoard||#USER=30=NucleoBoard||@Manufacturer=||@Manufacturer Part Number=||@Distributor=||@Distributor Part Number=
 PressureSensor||#USER=6=PressureSensor||@Manufacturer=||@Manufacturer Part Number=||@Distributor=||@Distributor Part Number=
 Resistor||#USER=2=Resistor||@Manufacturer=||@Manufacturer Part Number=||@Distributor=||@Distributor Part Number=
+VoltageRegulator||#USER=3=VoltageRegulator||@Manufacturer=||@Manufacturer Part Number=||@Distributor=||@Distributor Part Number=

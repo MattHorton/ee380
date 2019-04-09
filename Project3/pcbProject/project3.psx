@@ -4,3 +4,4 @@ HumiditySensor||3
 NucleoBoard||30
 PressureSensor||6
 Resistor||2
+VoltageRegulator||3

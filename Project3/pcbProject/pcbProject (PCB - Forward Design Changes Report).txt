@@ -6,12 +6,23 @@ Report Written:     Tuesday, April 09, 2019
 Design Path:        C:\Users\Matt Horton\Documents\ee380\Project3\pcbProject\pcbProject.pcb
 Design Title:       
 Created:            4/9/2019 1:58:45 AM
-Last Saved:         4/9/2019 2:02:06 AM
-Editing Time:       3 min
+Last Saved:         4/9/2019 2:16:55 AM
+Editing Time:       17 min
 Units:              thou (precision 0)
 
-Connected pin "R2.1" to net "N0005".
-Connected pin "R3.1" to net "N0003".
+Disconnected pin "U1.4" from net "N0018".
+Disconnected pin "U4.1" from net "N0007".
+Disconnected pin "U5.4" from net "N0018".
+
+Deleted net "N0018".
+
+Added component reference "U6" of component "VoltageRegulator", package "USER".
+
+Connected pin "U5.4" to net "N0007".
+Connected pin "U6.2" to net "N0007".
+Connected pin "U6.3" to net "N0017".
+
+Net N0001 renamed to N0010
 
 
 End Of Report.
